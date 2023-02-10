@@ -66,526 +66,671 @@
 
 </style>
 
+<button id="modalBtn" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#standard-modal">Standard Modal</button>
+	<div id="standard-modal" class="modal fade" tabindex="-1"
+		aria-labelledby="standard-modalLabel" style="display: block;"
+		aria-modal="true" role="dialog">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content border-primary border-1" style="width: 500px; height: 500px">
+				<div class="modal-header" style="background-color: #dbe7ec; text-align: center">
+					<span class="modal-title fs-2 fw-bold" id="standard-modalLabel" style=" margin-left: 25%;">BOAT-IN에서 알려드립니다</span>
+				</div>
+				<div class="modal-body text-center">
+					<span class="fs-3 fw-bold text-center">공지사항 제목</span>
+					<hr>
+					<p class="fs-4">이러쿵 저러쿵</p>
+				</div>
+				<div class="modal-footer d-flex justify-content-center" style="background-color: #dbe7ec;">
+					<button type="button" class="btn btn-primary">다시 보지 않기</button>
+					<button type="button" class="btn btn-light" data-bs-dismiss="modal" id="closeBtn2">닫기</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
 
-<div class="content-page" id="changeMyhomeBgDiv">
-	<!-- 배경색 변경은 이 div에 줘야함 -->
-	<div class="content">
-		<div class="container-fluid" id="home-target"> <!-- 여기까지만 동일 -->
+	<div class="content-page" id="changeMyhomeBgDiv">
+		<!-- 배경색 변경은 이 div에 줘야함 -->
+		<div class="content">
+			<div class="container-fluid" id="home-target">
+				<!-- 여기까지만 동일 -->
 
 
-			<div class="mt-2">
-				<div class="row justify-content-center">
-					<div class="col-xl-10">
-						<div class="card-body" style="text-align: center">
-							<div>
-								<img src="" class="rounded-circle avatar-xxl" alt="profile-image" id="memberPicPrintTag">
+				<div class="mt-2">
+					<div class="row justify-content-center">
+						<div class="col-xl-10">
+							<div class="card-body" style="text-align: center">
+								<div>
+									<img src="" class="rounded-circle avatar-xxl"
+										alt="profile-image" id="memberPicPrintTag">
+								</div>
+								<h1 style="font-weight: bold">
+									안녕하세요, <span id="memberNamePrint"></span>&nbsp;님
+								</h1>
 							</div>
-							<h1 style="font-weight: bold">
-								안녕하세요, <span id="memberNamePrint"></span>&nbsp;님
-							</h1>
 						</div>
 					</div>
 				</div>
-			</div>
 
 
-			<div class="row justify-content-center">
-				<div class="col-xl-10" style="padding:0%;">
+				<div class="row justify-content-center">
+					<div class="col-xl-10" style="padding: 0%;">
 
-					<nav id="navbar-example2" class="navbar navbar-light bg-white px-3" style="border-radius: 5px">
-						<a class="navbar-brand ps-2"  style="width: 119px;font-size:1.4em"><strong>HOME</strong></a>
+						<nav id="navbar-example2"
+							class="navbar navbar-light bg-white px-3"
+							style="border-radius: 5px">
+							<a class="navbar-brand ps-2"
+								style="width: 119px; font-size: 1.4em"><strong>HOME</strong></a>
 
-						<div class="justify-content-center">
+							<div class="justify-content-center">
+								<ul class="nav nav-pills">
+									<li class="nav-item" style="font-size: 1em"><input
+										type="text" id="inputDateInMyHome"
+										style="text-align: center; outline-style: none; width: 50%; margin-left: 20%; border: none; font-weight: bold; font-size: 1.4em"
+										readonly></li>
+								</ul>
+							</div>
 							<ul class="nav nav-pills">
-								<li class="nav-item" style="font-size: 1em">
-										<input type="text" id="inputDateInMyHome" style="text-align: center; outline-style: none; width: 50%; margin-left: 20%; border: none;font-weight: bold;font-size: 1.4em" readonly>
-								</li>
+								<li class="nav-item pe-2"><a href="#myHomeCostomizingModal"
+									data-bs-toggle="modal" style="color: black; font-size: 1.2em;">
+										<img alt="" src="/resources/src/images/컬러칩.png"
+										style="width: 30px"> <strong>홈 배경색 설정</strong>
+								</a></li>
+
 							</ul>
-						</div>
-						<ul class="nav nav-pills">
-							<li class="nav-item pe-2">
-								<a href="#myHomeCostomizingModal" data-bs-toggle="modal" style="color:black;font-size: 1.2em;">
-									<img alt="" src="/resources/src/images/컬러칩.png" style="width: 30px">
-									<strong>홈 배경색 설정</strong>
-								</a>
-							</li>
-
-						</ul>
-					</nav>
+						</nav>
+					</div>
 				</div>
-			</div>
-			<br>
+				<br>
 
-			
-			<div class="row justify-content-center homeDraggable">		
-				<div class="col-xl-10" style="padding:0%;">
-					<div class="card" style="height: 180px;">
-						<div class="card-body">
-							 <div class="row align-items-center">
-									<h3 class="header-title mb-2"  style="font-size: 1.3em">내 프로젝트<span class="badge bg-primary rounded-pill ms-1" id="myhomeprojectList"></span></h3>
-									  <!-- START carousel-->
-                                        <div id="carouselExampleControls" class="carousel slide">
-                                            <div class="carousel-inner" role="listbox" style="margin-left:2%;width:97.7%">
-                                            	<div class="d-flex"  id="myprojectListInMyhome">
-                                            		<div style="margin:auto;padding-top:2%;display: none" id="projectMakeFromMyhome">
-	                                            		<button type="button" class="btn btn-primary waves-effect waves-light width-lg" onclick="newProjectModalToggle()">새 프로젝트 생성</button>
-	                                            	</div>
-								  				 </div>
-                                                <div class="carousel-item active projectListItem" data-bs-interval="120000">
-                                                    <div id="testcaro1"></div>
-                                                </div>
-                                                <div class="carousel-item projectListItem" data-bs-interval="120000">
-                                                    <div id="testcaro2"></div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                            	<div id="projectListCarouselBtn">
-		                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev" style="width:6%;">
-		                                                <span class="text-dark" style="margin-top:40%;font-size:3em;padding:0%;border-radius: 40%"><i class="fe-chevron-left"></i></span>
-		                                                <span class="visually-hidden">Previous</span>
-		                                            </a>
-		                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next" style="width:6%">
-		                                                <span class="text-dark" style="margin-top:40%;font-size:3em;padding:0%;border-radius: 40%"><i class="fe-chevron-right"></i></span>
-		                                                <span class="visually-hidden">Next</span>
-		                                            </a>
-		                                         </div>
-		                                         
+
+				<div class="row justify-content-center homeDraggable">
+					<div class="col-xl-10" style="padding: 0%;">
+						<div class="card" style="height: 180px;">
+							<div class="card-body">
+								<div class="row align-items-center">
+									<h3 class="header-title mb-2" style="font-size: 1.3em">
+										내 프로젝트<span class="badge bg-primary rounded-pill ms-1"
+											id="myhomeprojectList"></span>
+									</h3>
+									<!-- START carousel-->
+									<div id="carouselExampleControls" class="carousel slide">
+										<div class="carousel-inner" role="listbox"
+											style="margin-left: 2%; width: 97.7%">
+											<div class="d-flex" id="myprojectListInMyhome">
+												<div style="margin: auto; padding-top: 2%; display: none"
+													id="projectMakeFromMyhome">
+													<button type="button"
+														class="btn btn-primary waves-effect waves-light width-lg"
+														onclick="newProjectModalToggle()">새 프로젝트 생성</button>
+												</div>
+											</div>
+											<div class="carousel-item active projectListItem"
+												data-bs-interval="120000">
+												<div id="testcaro1"></div>
+											</div>
+											<div class="carousel-item projectListItem"
+												data-bs-interval="120000">
+												<div id="testcaro2"></div>
+											</div>
+										</div>
+
 									</div>
-                                        
-										
+									<div id="projectListCarouselBtn">
+										<a class="carousel-control-prev"
+											href="#carouselExampleControls" role="button"
+											data-bs-slide="prev" style="width: 6%;"> <span
+											class="text-dark"
+											style="margin-top: 40%; font-size: 3em; padding: 0%; border-radius: 40%"><i
+												class="fe-chevron-left"></i></span> <span class="visually-hidden">Previous</span>
+										</a> <a class="carousel-control-next"
+											href="#carouselExampleControls" role="button"
+											data-bs-slide="next" style="width: 6%"> <span
+											class="text-dark"
+											style="margin-top: 40%; font-size: 3em; padding: 0%; border-radius: 40%"><i
+												class="fe-chevron-right"></i></span> <span class="visually-hidden">Next</span>
+										</a>
+									</div>
+
+								</div>
+
+
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div><!-- 내 프로젝트 row끝! -->
-				
-			<div class="row justify-content-center homeDraggable">	
-				
-				
+			<!-- 내 프로젝트 row끝! -->
+
+			<div class="row justify-content-center homeDraggable">
+
+
 				<div class="col-xl-5">
 					<div class="card" style="height: 340px;">
 						<div class="card-body">
-								<div class="row">
-									<h4 class="header-title mb-2" style="float: left;font-size: 1.3em">내 작업</h4>
-								</div>
-									<!-- 이 안에 내용 들어가야 함 -->
-									<div class="ustify-content-center">
-										<div>
-											<ul class="nav nav-pills navtab-bg nav-justified">
-	                                            <li class="nav-item">
-	                                                <a style="font-size:1.2em;font-weight: bold" href="#deadLinebefore3DaysWorkList" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
-	                                                    마감일 3일 이내 작업
-	                                                </a>
-	                                            </li>
-	                                            <li class="nav-item">
-	                                                <a style="font-size:1.2em;font-weight: bold" href="#outOfdeadLineWorkList" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
-	                                                    마감일 지난 작업
-	                                                </a>
-	                                            </li>
-	                                        </ul>
-	                                        
-	                                        <div class="tab-content">
-	                                            <div class="tab-pane active" id="deadLinebefore3DaysWorkList">
-													<table class="table table-hover table-centered mb-0" id="before3DaysWorksTable">
-														<thead style="font-size: 1.2em">
-															<tr>
-																<th style="width: 25%">작업이름</th>
-																<th style="width: 17%">작업상태</th>
-																<th style="width: 18%">시작일</th>
-																<th style="width: 18%">마감일</th>
-																<th style="width: 25%">프로젝트</th>
-															</tr>
-														</thead>
-														<tbody>
-														</tbody>
-													</table>	                                            	
-	                                            </div>
-	                                            <div class="tab-pane show" id="outOfdeadLineWorkList">
-	                                            	<table class="table table-hover table-centered mb-0" id="outOfdeadLineWorksTable">
-														<thead style="font-size: 1.2em">
-															<tr>
-																<th style="width: 25%">작업이름</th>
-																<th style="width: 15%">진행도</th>
-																<th style="width: 17%">작업상태</th>
-																<th style="width: 18%">마감일</th>
-																<th style="width: 25%">프로젝트</th>
-															</tr>
-														</thead>
-														<tbody>
-														</tbody>
-													</table>	      
-	                                            </div>
-	                                        </div>
+							<div class="row">
+								<h4 class="header-title mb-2"
+									style="float: left; font-size: 1.3em">내 작업</h4>
+							</div>
+							<!-- 이 안에 내용 들어가야 함 -->
+							<div class="ustify-content-center">
+								<div>
+									<ul class="nav nav-pills navtab-bg nav-justified">
+										<li class="nav-item"><a
+											style="font-size: 1.2em; font-weight: bold"
+											href="#deadLinebefore3DaysWorkList" data-bs-toggle="tab"
+											aria-expanded="true" class="nav-link active"> 마감일 3일 이내
+												작업 </a></li>
+										<li class="nav-item"><a
+											style="font-size: 1.2em; font-weight: bold"
+											href="#outOfdeadLineWorkList" data-bs-toggle="tab"
+											aria-expanded="true" class="nav-link"> 마감일 지난 작업 </a></li>
+									</ul>
+
+									<div class="tab-content">
+										<div class="tab-pane active" id="deadLinebefore3DaysWorkList">
+											<table class="table table-hover table-centered mb-0"
+												id="before3DaysWorksTable">
+												<thead style="font-size: 1.2em">
+													<tr>
+														<th style="width: 25%">작업이름</th>
+														<th style="width: 17%">작업상태</th>
+														<th style="width: 18%">시작일</th>
+														<th style="width: 18%">마감일</th>
+														<th style="width: 25%">프로젝트</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+										<div class="tab-pane show" id="outOfdeadLineWorkList">
+											<table class="table table-hover table-centered mb-0"
+												id="outOfdeadLineWorksTable">
+												<thead style="font-size: 1.2em">
+													<tr>
+														<th style="width: 25%">작업이름</th>
+														<th style="width: 15%">진행도</th>
+														<th style="width: 17%">작업상태</th>
+														<th style="width: 18%">마감일</th>
+														<th style="width: 25%">프로젝트</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
 										</div>
 									</div>
-									
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="col-xl-5">
 					<div class="card" style="height: 340px;">
 						<div class="card-body">
-							
-								<div class="row">
-									<h4 class="header-title mb-2" style="float: left;font-size: 1.3em">알림&nbsp;<i class="fe-bell"></i></h4>
-								</div>	
-									
-									    <div class="row justify-content-center">
-                                            <div class="col-xl-3">
-                                                <div class="nav flex-column nav-pills nav-pills-tab" id="v-pills-tab-myHome" role="tablist" aria-orientation="vertical" style="font-size: 1.1em">
-                                                    <a style="font-weight: bold"class="nav-link show mb-1 active" id="v-pills-project-tab" data-bs-toggle="pill" href="#v-pills-project" role="tab" aria-controls="vv-pills-project" aria-selected="true" >
-                                                        프로젝트<span class="badge bg-danger rounded-pill ms-1 float-end" id="pojectUnreadAlarmLength"></span></a>
-                                                    <a style="font-weight: bold" class="nav-link mb-1" id="v-pills-invite-tab" data-bs-toggle="pill" href="#v-pills-invite" role="tab" aria-controls="v-pills-invite" aria-selected="false">
-                                                        프로젝트 초대<span class="badge bg-danger rounded-pill ms-1 float-end" id="inviteUnreadAlarmLength"></span></a>
-                                                    <a style="font-weight: bold" class="nav-link mb-1" id="v-pills-mail-tab" data-bs-toggle="pill" href="#v-pills-mail" role="tab" aria-controls="v-pills-mail" aria-selected="false">
-                                                        쪽지<span class="badge bg-danger rounded-pill ms-1 float-end" id="mailUnreadAlarmLength"></span></a>
-                                                    <a style="font-weight: bold" class="nav-link mb-1" id="v-pills-chatting-tab" data-bs-toggle="pill" href="#v-pills-chatting" role="tab" aria-controls="v-pills-chatting" aria-selected="false">
-                                                        채팅<span class="badge bg-danger rounded-pill ms-1 float-end" id="chattingUnreadAlarmLength"></span></a>
-                                                    <a style="font-weight: bold" class="nav-link mb-1" id="v-pills-common-tab" data-bs-toggle="pill" href="#v-pills-common" role="tab" aria-controls="v-pills-common" aria-selected="false">
-                                                        댓글<span class="badge bg-danger rounded-pill ms-1 float-end" id="commentUnreadAlarmLength"></span></a>
-                                                    <a style="font-weight: bold" class="nav-link mb-1" id="v-pills-likelike-tab" data-bs-toggle="pill" href="#v-pills-likelike" role="tab" aria-controls="v-pills-likelike" aria-selected="false">
-                                                        좋아요❤<span class="badge bg-danger rounded-pill ms-1 float-end" id="likeUnreadAlarmLength"></span></a>
-                                                </div>
-                                            </div> <!-- end col-->
-                                            
-                                            <div class="col-xl-8" data-simplebar style="max-height: 257px;">
-                                                <div class="tab-content pt-0">
-                                                    <div class="tab-pane fade active show" id="v-pills-project" role="tabpanel" aria-labelledby="v-pills-project-tab" style="font-size: 1.13em">
-                                                        		<div class="list-group"  id="myAlarmProject1" style="font-weight: bold">
-							                                            <div style="text-align: center;" class="mt-5 pt-2" id="sppinerInAlarm">
-							                                            	<div class="spinner-border text-primary m-2 avatar-sm" role="status" ></div>
-							                                            </div>
-			                                       				 </div>
-                                                        		<div class="list-group" id="myAlarmProject2" style="font-weight: bold">
-							                                            
-			                                       				 </div>
-			                                       				 
-                                                    </div>
-                                                    <div class="tab-pane fade" id="v-pills-invite" role="tabpanel" aria-labelledby="v-pills-invite-tab" style="font-size: 1.13em">
-																<div class="list-group" id="myAlarmInvite1" style="font-weight: bold">
-							                                            
-			                                       				 </div>                                                        
-																<div class="list-group" id="myAlarmInvite2" style="font-weight: bold">
-							                                            
-			                                       				 </div>                                                        
-                                                    </div>
-                                                    <div class="tab-pane fade" id="v-pills-mail" role="tabpanel" aria-labelledby="v-pills-mail-tab" style="font-size: 1.13em">
-                                                        		<div class="list-group" id="myAlarmMail1" style="font-weight: bold">
-                                                        		
-			                                       				 </div>
-                                                        		<div class="list-group" id="myAlarmMail2" style="font-weight: bold">
-                                                        		
-			                                       				 </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="v-pills-chatting" role="tabpanel" aria-labelledby="v-pills-chatting-tab" style="font-size: 1.13em">
-																 <div class="list-group" id="myAlarmChatting1" style="font-weight: bold">
-							                                            
-			                                       				 </div>
-																 <div class="list-group" id="myAlarmChatting2" style="font-weight: bold">
-							                                            
-			                                       				 </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="v-pills-common" role="tabpanel" aria-labelledby="v-pills-common-tab" style="font-size: 1.13em">
-			                                                     <div class="list-group" id="myAlarmComment1" style="font-weight: bold">
-							                                            
-			                                       				 </div>
-			                                                     <div class="list-group" id="myAlarmComment2" style="font-weight: bold">
-							                                            
-			                                       				 </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="v-pills-likelike" role="tabpanel" aria-labelledby="v-pills-likelike-tab" style="font-size: 1.13em">
-                                                        		<div class="list-group" id="myAlarmLike1" style="font-weight: bold">
-                                                        		
-			                                       			    </div>
-                                                        		<div class="list-group" id="myAlarmLike2" style="font-weight: bold">
-                                                        		
-			                                       			    </div>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- end col-->
-									</div><!-- end row -->	
-						
+
+							<div class="row">
+								<h4 class="header-title mb-2"
+									style="float: left; font-size: 1.3em">
+									알림&nbsp;<i class="fe-bell"></i>
+								</h4>
+							</div>
+
+							<div class="row justify-content-center">
+								<div class="col-xl-3">
+									<div class="nav flex-column nav-pills nav-pills-tab"
+										id="v-pills-tab-myHome" role="tablist"
+										aria-orientation="vertical" style="font-size: 1.1em">
+										<a style="font-weight: bold" class="nav-link show mb-1 active"
+											id="v-pills-project-tab" data-bs-toggle="pill"
+											href="#v-pills-project" role="tab"
+											aria-controls="vv-pills-project" aria-selected="true">
+											프로젝트<span class="badge bg-danger rounded-pill ms-1 float-end"
+											id="pojectUnreadAlarmLength"></span>
+										</a> <a style="font-weight: bold" class="nav-link mb-1"
+											id="v-pills-invite-tab" data-bs-toggle="pill"
+											href="#v-pills-invite" role="tab"
+											aria-controls="v-pills-invite" aria-selected="false">
+											프로젝트 초대<span
+											class="badge bg-danger rounded-pill ms-1 float-end"
+											id="inviteUnreadAlarmLength"></span>
+										</a> <a style="font-weight: bold" class="nav-link mb-1"
+											id="v-pills-mail-tab" data-bs-toggle="pill"
+											href="#v-pills-mail" role="tab" aria-controls="v-pills-mail"
+											aria-selected="false"> 쪽지<span
+											class="badge bg-danger rounded-pill ms-1 float-end"
+											id="mailUnreadAlarmLength"></span></a> <a
+											style="font-weight: bold" class="nav-link mb-1"
+											id="v-pills-chatting-tab" data-bs-toggle="pill"
+											href="#v-pills-chatting" role="tab"
+											aria-controls="v-pills-chatting" aria-selected="false">
+											채팅<span class="badge bg-danger rounded-pill ms-1 float-end"
+											id="chattingUnreadAlarmLength"></span>
+										</a> <a style="font-weight: bold" class="nav-link mb-1"
+											id="v-pills-common-tab" data-bs-toggle="pill"
+											href="#v-pills-common" role="tab"
+											aria-controls="v-pills-common" aria-selected="false"> 댓글<span
+											class="badge bg-danger rounded-pill ms-1 float-end"
+											id="commentUnreadAlarmLength"></span></a> <a
+											style="font-weight: bold" class="nav-link mb-1"
+											id="v-pills-likelike-tab" data-bs-toggle="pill"
+											href="#v-pills-likelike" role="tab"
+											aria-controls="v-pills-likelike" aria-selected="false">
+											좋아요❤<span class="badge bg-danger rounded-pill ms-1 float-end"
+											id="likeUnreadAlarmLength"></span>
+										</a>
+									</div>
+								</div>
+								<!-- end col-->
+
+								<div class="col-xl-8" data-simplebar style="max-height: 257px;">
+									<div class="tab-content pt-0">
+										<div class="tab-pane fade active show" id="v-pills-project"
+											role="tabpanel" aria-labelledby="v-pills-project-tab"
+											style="font-size: 1.13em">
+											<div class="list-group" id="myAlarmProject1"
+												style="font-weight: bold">
+												<div style="text-align: center;" class="mt-5 pt-2"
+													id="sppinerInAlarm">
+													<div class="spinner-border text-primary m-2 avatar-sm"
+														role="status"></div>
+												</div>
+											</div>
+											<div class="list-group" id="myAlarmProject2"
+												style="font-weight: bold"></div>
+
+										</div>
+										<div class="tab-pane fade" id="v-pills-invite" role="tabpanel"
+											aria-labelledby="v-pills-invite-tab"
+											style="font-size: 1.13em">
+											<div class="list-group" id="myAlarmInvite1"
+												style="font-weight: bold"></div>
+											<div class="list-group" id="myAlarmInvite2"
+												style="font-weight: bold"></div>
+										</div>
+										<div class="tab-pane fade" id="v-pills-mail" role="tabpanel"
+											aria-labelledby="v-pills-mail-tab" style="font-size: 1.13em">
+											<div class="list-group" id="myAlarmMail1"
+												style="font-weight: bold"></div>
+											<div class="list-group" id="myAlarmMail2"
+												style="font-weight: bold"></div>
+										</div>
+										<div class="tab-pane fade" id="v-pills-chatting"
+											role="tabpanel" aria-labelledby="v-pills-chatting-tab"
+											style="font-size: 1.13em">
+											<div class="list-group" id="myAlarmChatting1"
+												style="font-weight: bold"></div>
+											<div class="list-group" id="myAlarmChatting2"
+												style="font-weight: bold"></div>
+										</div>
+										<div class="tab-pane fade" id="v-pills-common" role="tabpanel"
+											aria-labelledby="v-pills-common-tab"
+											style="font-size: 1.13em">
+											<div class="list-group" id="myAlarmComment1"
+												style="font-weight: bold"></div>
+											<div class="list-group" id="myAlarmComment2"
+												style="font-weight: bold"></div>
+										</div>
+										<div class="tab-pane fade" id="v-pills-likelike"
+											role="tabpanel" aria-labelledby="v-pills-likelike-tab"
+											style="font-size: 1.13em">
+											<div class="list-group" id="myAlarmLike1"
+												style="font-weight: bold"></div>
+											<div class="list-group" id="myAlarmLike2"
+												style="font-weight: bold"></div>
+										</div>
+									</div>
+								</div>
+								<!-- end col-->
+							</div>
+							<!-- end row -->
+
+						</div>
 					</div>
 				</div>
-			</div>
 
-				
-				
-				
+
+
+
 			</div>
 
 			<!-- 	 		<div style="height:100px"></div>배경색 끝까지 채우기 위해서 필요 -->
 
-				
-	<div class="homeDraggable">
-					<div class="row justify-content-center">
-						
-						
-						<div class="col-xl-10">
-						
-						<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                                 <div class="carousel-inner" role="listbox">
-                                     
+
+			<div class="homeDraggable">
+				<div class="row justify-content-center">
+
+
+					<div class="col-xl-10">
+
+						<div id="carouselExampleSlidesOnly" class="carousel slide"
+							data-bs-ride="carousel">
+							<div class="carousel-inner" role="listbox">
+
 								<div class="carousel-item active" data-bs-interval="4500">
-								<div class="row">
-								<div class="col-xl-4 newsCard"  id="newsLinkTag1" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag1" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle1"></strong></h4>
-														<p class="card-text" >
-															<small class="text-muted" >
-																<strong id="newsTime1"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+									<div class="row">
+										<div class="col-xl-4 newsCard" id="newsLinkTag1" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag1"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle1"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime1"></strong>
+																	</small>
+																</p>
 															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 newsCard" id="newsLinkTag2" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag2"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle2"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime2"></strong>
+																	</small>
+																</p>
+															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 newsCard" id="newsLinkTag3" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag3"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle3"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime3"></strong>
+																	</small>
+																</p>
+															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-4 newsCard"  id="newsLinkTag2" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag2" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle2"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime2"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
-															</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 newsCard"  id="newsLinkTag3" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag3" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle3"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime3"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
-															</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</div>
-								</div>
-								</div><!-- carousel item끝 -->
-								
+								<!-- carousel item끝 -->
+
 								<div class="carousel-item" data-bs-interval="4500">
-								<div class="row">
-								<div class="col-xl-4 newsCard"  id="newsLinkTag4" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag4" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle4"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime4"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+									<div class="row">
+										<div class="col-xl-4 newsCard" id="newsLinkTag4" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag4"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle4"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime4"></strong>
+																	</small>
+																</p>
 															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 newsCard" id="newsLinkTag5" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag5"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle5"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime5"></strong>
+																	</small>
+																</p>
+															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 newsCard" id="newsLinkTag6" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag6"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle6"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime6"></strong>
+																	</small>
+																</p>
+															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-4 newsCard"  id="newsLinkTag5" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag5" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle5"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime5"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
-															</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 newsCard"  id="newsLinkTag6" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag6" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle6"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime6"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
-															</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								</div>
-								</div><!-- carousel-item끝 -->
-								
+								<!-- carousel-item끝 -->
+
 								<div class="carousel-item" data-bs-interval="4500">
-								<div class="row">
-								<div class="col-xl-4 newsCard"  id="newsLinkTag7" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag7" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle7"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime7"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+									<div class="row">
+										<div class="col-xl-4 newsCard" id="newsLinkTag7" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag7"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle7"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime7"></strong>
+																	</small>
+																</p>
 															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 newsCard" id="newsLinkTag8" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag8"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle8"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime8"></strong>
+																	</small>
+																</p>
+															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 newsCard" id="newsLinkTag9" onclick="">
+											<div class="card mb-3" style="height: 145px">
+												<div class="row g-0">
+													<div class="col-xl-5"
+														style="height: 145px; margin: 0 auto;">
+														<img id="newsImgTag9"
+															style="width: 100%; height: 100%; object-fit: fill; border-top-left-radius: 3%; border-bottom-left-radius: 3%"
+															src="" alt="...">
+													</div>
+													<div class="col-xl-7">
+														<div class="card-body" style="padding-top: 7%;">
+															<div style="height: 90px;">
+																<h4 class="card-title"
+																	style="line-height: 1.5em; margin-bottom: 1%;">
+																	<strong id="newsTitle9"></strong>
+																</h4>
+																<p class="card-text">
+																	<small class="text-muted"> <strong
+																		id="newsTime9"></strong>
+																	</small>
+																</p>
+															</div>
+															<div>
+																<img class="avatar-xs rounded-circle"
+																	src="/resources/profileImg/mk_logo.jfif"> <strong>매일경제:&nbsp;IT&#149;인터넷</strong>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-4 newsCard"  id="newsLinkTag8" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag8" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle8"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime8"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
-															</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 newsCard"  id="newsLinkTag9" onclick="">
-									<div class="card mb-3"  style="height:145px">
-										<div class="row g-0">
-											<div class="col-xl-5" style="height:145px;margin:0 auto;">
-												<img  id="newsImgTag9" style="width:100%;height:100%;object-fit:fill;border-top-left-radius:3%;border-bottom-left-radius:3%" src="" alt="..." >
-											</div>
-											<div class="col-xl-7">
-												<div class="card-body" style="padding-top:7%;">
-												 <div style="height:90px;">
-														<h4 class="card-title"  style="line-height:1.5em;margin-bottom:1%;"><strong id="newsTitle9"></strong></h4>
-														<p class="card-text">
-															<small class="text-muted">
-																<strong id="newsTime9"></strong>
-															</small>
-														</p>
-												 </div>
-															<div>
-																<img  class="avatar-xs rounded-circle" src="/resources/profileImg/mk_logo.jfif">
-																<strong>매일경제:&nbsp;IT&#149;인터넷</strong>
-															</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								</div>
-								</div><!-- carousel item끝 -->
-	
-				   		</div>
-                   	</div><!-- 				carousel끝 -->
-	
-	
-				</div><!-- 젤 처음 생성한 row를 col-10으로 고정해주는 div -->
-				
-				</div><!-- end row  -->
+								<!-- carousel item끝 -->
+
+							</div>
+						</div>
+						<!-- 				carousel끝 -->
+
+
+					</div>
+					<!-- 젤 처음 생성한 row를 col-10으로 고정해주는 div -->
+
+				</div>
+				<!-- end row  -->
 
 			</div>
 			<!-- news위젯 끝! -->
 
 			<!-- 사용자 지정 관련 모달 -->
-			<div id="myHomeCostomizingModal" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+			<div id="myHomeCostomizingModal" class="modal fade" tabindex="-1"
+				style="display: none;" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
 						</div>
 						<div style="text-align: center">
 							<h2 style="padding-bottom: 10px;">
@@ -595,24 +740,35 @@
 						<div class="modal-body p-4">
 							<div class="row">
 								<div class="mb-3">
-<!-- 									<label for="#colorPreviewDiv" class="form-label" style="font-size: 1.2em; margin-left: 3%;">배경</label> -->
+									<!-- 									<label for="#colorPreviewDiv" class="form-label" style="font-size: 1.2em; margin-left: 3%;">배경</label> -->
 									<div id="colorPreviewDiv">
-										<div class="backgroundColorDiv" style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);" id="bgcolor111">
+										<div class="backgroundColorDiv"
+											style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"
+											id="bgcolor111">
 											<i class="fe-check bgCheckedIcon" id="bgcolorIcon111"></i>
 										</div>
-										<div class="backgroundColorDiv" style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);" id="bgcolor222">
+										<div class="backgroundColorDiv"
+											style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);"
+											id="bgcolor222">
 											<i class="fe-check bgCheckedIcon" id="bgcolorIcon222"></i>
 										</div>
-										<div class="backgroundColorDiv" style="background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);" id="bgcolor333">
+										<div class="backgroundColorDiv"
+											style="background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);"
+											id="bgcolor333">
 											<i class="fe-check bgCheckedIcon" id="bgcolorIcon333"></i>
 										</div>
-										<div class="backgroundColorDiv" style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);" id="bgcolor444">
+										<div class="backgroundColorDiv"
+											style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);"
+											id="bgcolor444">
 											<i class="fe-check bgCheckedIcon" id="bgcolorIcon444"></i>
 										</div>
-										<div class="backgroundColorDiv" style="background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);" id="bgcolor555">
+										<div class="backgroundColorDiv"
+											style="background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);"
+											id="bgcolor555">
 											<i class="fe-check bgCheckedIcon" id="bgcolorIcon555"></i>
 										</div>
-										<div class="backgroundColorDiv" style="background-color: #ecf2f5" id="bgcolor666">
+										<div class="backgroundColorDiv"
+											style="background-color: #ecf2f5" id="bgcolor666">
 											<i class="fe-check bgCheckedIcon" id="bgcolorIcon666"></i>
 										</div>
 									</div>
@@ -623,8 +779,11 @@
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">취소</button>
-							<button type="button" class="btn btn-primary waves-effect waves-light" onclick="updateMyhomeBgColor()">저장</button>
+							<button type="button" class="btn btn-secondary waves-effect"
+								data-bs-dismiss="modal">취소</button>
+							<button type="button"
+								class="btn btn-primary waves-effect waves-light"
+								onclick="updateMyhomeBgColor()">저장</button>
 						</div>
 					</div>
 				</div>
@@ -633,7 +792,41 @@
 		</div>
 	</div>
 
+
+	<!-- <table border="0" width="100%" height="100%"> -->
+	<!-- 	<tbody> -->
+	<!-- 		<tr> -->
+	<!-- 			<td colspan="2" height="377"> -->
+	<!-- 				<a href="이동할 주소" target="_blank">공지사항~</a> -->
+	<!-- 			</td> -->
+	<!-- 		</tr> -->
+	<!-- 		<tr> -->
+	<!-- 			<td width="250" height="23" valign="top" bgcolor="#ffffff"> -->
+	<!-- 				<input type="checkbox" name="name1" onfocus="this.blur()">오늘 하루 이 창 띄우지 않음 -->
+	<!-- 			</td> -->
+	<!-- 			<td width="50" valign="bottom" bgcolor="#ffffff" height="23"> -->
+	<!-- 				<a href="#" onclick="popup.close();">[닫기]</a> -->
+	<!-- 			</td> -->
+	<!-- 		</tr> -->
+	<!-- 	</tbody> -->
+	<!-- </table> -->
+
+
+
+
 <script>
+
+$(function(){
+	$('#modalBtn').click();
+})
+
+window.onload = function () {
+    document.getElementById('closeBtn2').onclick = function () {
+        document.getElementById('standard-modal').style.display = "none"
+    };
+};
+
+
 var myHomeBgColor = "";
 
 $(function() {
@@ -1732,9 +1925,6 @@ function renderReadyProject() {
 	
 	document.querySelector("#home-target").innerHTML = projectText;
 }
-
-
   
   
 </script>
-
