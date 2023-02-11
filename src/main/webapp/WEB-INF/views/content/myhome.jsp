@@ -64,25 +64,52 @@
 	font-weight: bold;
 }
 
+
 </style>
 
-<button id="modalBtn" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#standard-modal">Standard Modal</button>
+<button id="popupBtn" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#standard-modal">Standard Modal</button>
 	<div id="standard-modal" class="modal fade" tabindex="-1"
-		aria-labelledby="standard-modalLabel" style="display: block;"
+		aria-labelledby="standard-modalLabel" 
 		aria-modal="true" role="dialog">
 		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content border-primary border-1" style="width: 500px; height: 500px">
+			<div class="modal-content" style="width: 500px; height: 650px">
 				<div class="modal-header" style="background-color: #dbe7ec; text-align: center">
-					<span class="modal-title fs-2 fw-bold" id="standard-modalLabel" style=" margin-left: 25%;">BOAT-IN에서 알려드립니다</span>
+					<span class="modal-title fs-2 fw-bold" id="standard-modalLabel" style=" margin-left: 18%;">📢 BOAT-IN에서 알려드립니다</span>
 				</div>
 				<div class="modal-body text-center">
-					<span class="fs-3 fw-bold text-center">공지사항 제목</span>
+					<div style="padding: 0px">
+						<span class="fs-3 fw-bold text-center">
+							[공지] BOAT-IN 고객센터 휴무 안내 (2/15 ~ 2/21)
+						</span>
+					</div>
 					<hr>
-					<p class="fs-4">이러쿵 저러쿵</p>
+					<div>
+						<p class="fs-4">
+							안녕하십니까? BOAT-IN입니다.<br>
+							
+							고객센터 휴무에 대해 안내해드립니다.<br>
+							아래 내용을 확인하셔서 서비스 이용에 참고해주시기 바랍니다.<br><br>
+							
+							■ 임시 휴무 안내<br>
+							- 2023년 2월 15일(수) ~ 2월 21일(화)<br>
+							
+							■ 임시 휴무에 따른 영향<br>
+							- 고객센터(게시판/전화) 운영 제한<br><br>
+							
+							■ 서비스 안내<br>
+							- 서비스 신규 신청 및 연장은 자동으로 처리됩니다.<br>
+							- 메일 문의 및 전화 문의는 2월 21일 14시부터 가능합니다. <br>
+							- 서비스 이용 및 서버 모니터링은 365일 24시간 모니터링되고 있습니다.<br><br>
+							
+							더 나은 서비스를 제공하기 위해 노력하겠습니다.<br>
+							감사합니다.
+							
+						</p>
+					</div>
 				</div>
-				<div class="modal-footer d-flex justify-content-center" style="background-color: #dbe7ec;">
-					<button type="button" class="btn btn-primary">다시 보지 않기</button>
-					<button type="button" class="btn btn-light" data-bs-dismiss="modal" id="closeBtn2">닫기</button>
+				<div class="modal-footer d-flex justify-content-center">
+					<button type="button" class="btn btn-primary" onclick="setCookie('popup','close', 1)" style="font-size: 1.3em">하루 보지 않기</button>
+					<button type="button" class="btn btn-light" data-bs-dismiss="modal" id="closePopBtn" style="font-size: 1.3em">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -815,16 +842,38 @@
 
 
 <script>
-
 $(function(){
-	$('#modalBtn').click();
+	if (localStorage.getItem("id")!="admin") {
+		if(getCookie("popup") !="close"){
+			$('#popupBtn').click();
+		}
+	}
 })
+function getCookie(name){
+    var nameOfCookie = name + "=";
+    var x =0;
+    while (x<=document.cookie.length){
+        var y = (x+nameOfCookie.length);
+        if(document.cookie.substring(x,y) == nameOfCookie){
+            if((endOfCookie=document.cookie.indexOf(";",y))==-1)
+                endOfCookie = document.cookie.length;
+            return unescape(document.cookie.substring(y, endOfCookie));
+            }
+            x=document.cookie.indexOf(" ",x) +1;
+            if(x==0)
+            break;
+            }
+        return "";
+}
 
-window.onload = function () {
-    document.getElementById('closeBtn2').onclick = function () {
-        document.getElementById('standard-modal').style.display = "none"
-    };
-};
+function setCookie(name, value, expiredays){
+    var todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + expiredays);
+    document.cookie=name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+    
+    //눌렀을 때  모달 닫고 배경 없에기 
+    $('#closePopBtn').click();
+}
 
 
 var myHomeBgColor = "";
